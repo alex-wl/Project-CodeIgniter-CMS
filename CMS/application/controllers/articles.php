@@ -27,4 +27,16 @@ class Articles extends MY_Controller //I am creating a custom base controller, i
         //Load View
         $this->load->view('inner', $data);
     }
+    
+    public function search($keyword)
+    {
+        //Get Articles
+        $data['articles'] = $this->article_model->get_filtered_articles($keyword, 'id','DESC','10');
+
+        //Get Menu Items
+        $data['menu_items'] = $this->article_model->get_menu_items();
+
+        //Load View
+        $this->load->view('home', $data);
+    }
 }
